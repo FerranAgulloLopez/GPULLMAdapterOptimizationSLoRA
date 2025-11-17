@@ -54,7 +54,7 @@ def get_scheduler(input_params, adapter_dirs):
 class RouterManager:
 
     def __init__(self, weightdir, adapter_dirs, load_way, world_size, eos_id,
-                 router_port, detokenization_port, model_rpc_ports,
+                 router_port, detokenization_port, model_rpc_port,
                  input_params,
                  mode=[], log_stats=True, log_stats_interval=10):
         self.model_weightdir = weightdir
@@ -89,15 +89,22 @@ class RouterManager:
         
         self.send_to_detokenization = context.socket(zmq.PUSH)
         self.send_to_detokenization.connect(f"tcp://127.0.0.1:{detokenization_port}")
-        self.model_rpc_ports = model_rpc_ports
+        self.model_rpc_port = model_rpc_port
 
         self.stats_tool = Stats(log_stats, log_stats_interval)
 
+        # debugging
+        self.count_steps = 0
+        self.sum_batch_size = 0
+        self.max_batch_size = 0
+        self.sum_unique_adapters = 0
+        self.max_unique_adapters = 0
 
     async def wait_to_model_ready(self):
+        assert self.world_size == 1
         self.model_rpcs: List[ModelRpcClient] = []
         for rank_id in range(self.world_size):
-            rpc_model = await start_model_process(port=self.model_rpc_ports[rank_id], world_size=self.world_size)
+            rpc_model = await start_model_process(port=self.model_rpc_port, world_size=self.world_size)
             self.model_rpcs.append(rpc_model)
 
         init_model_ret = []
@@ -165,10 +172,24 @@ class RouterManager:
         while True:
             await self._step()
             counter_count += 1
+            
             if self.running_batch is not None:
+            
                 if counter_count % 50 == 0:
-                    print("current batch size:", len(self.running_batch.reqs), "token used ratio:", self.running_batch.calcu_used_tokens() / self.input_params.max_total_token_num)
-                    pass
+                    print("current batch size:", len(self.running_batch.reqs), "token used ratio:", self.running_batch.calcu_used_tokens() / self.input_params.max_total_token_num, flush=True)
+                    if self.count_steps > 0:
+                        print(
+                            f'Average batch size: {self.sum_batch_size / self.count_steps}. '
+                            f'Maximum batch size: {self.max_batch_size}. '
+                            f'Average unique adapters in batch: {self.sum_unique_adapters / self.count_steps}. '
+                            f'Maximum unique adapters in batch: {self.max_unique_adapters}. '
+                        , flush=True)
+                    else:
+                        print(
+                            f'No steps completed yet. '
+                            f'Maximum batch size: {self.max_batch_size}. '
+                            f'Maximum unique adapters in batch: {self.max_unique_adapters}. '
+                        , flush=True)
                 self.stats_tool.print_stats()
                 
             if self.running_batch is None:
@@ -178,7 +199,14 @@ class RouterManager:
         """
         事件处理循环
         """
+    
         # 删除所有已经 finished 的 req
+        if self.running_batch is not None:
+            self.count_steps += 1
+            self.sum_batch_size += len(self.running_batch.reqs)
+            self.max_batch_size = max(self.max_batch_size, len(self.running_batch.reqs))
+            self.sum_unique_adapters += len(self.running_batch.adapter_dirs)
+            self.max_unique_adapters = max(self.max_unique_adapters, len(self.running_batch.adapter_dirs))
         if self.running_batch is None:
             new_batch = self.req_queue.generate_new_batch(self.running_batch, self.lora_ranks)
             if self.input_params.enable_abort and len(self.req_queue.abort_req_list) > 0:
@@ -376,7 +404,7 @@ class RouterManager:
         return
 
 
-def start_router_process(args, router_port, detokenization_port, model_rpc_ports, mode, pipe_writer):
+def start_router_process(args, router_port, detokenization_port, model_rpc_port, mode, pipe_writer):
     input_params = InputParams(max_req_total_len=args.max_req_total_len,
                                # kv cache manager parameters
                                max_total_token_num=args.max_total_token_num,
@@ -400,6 +428,7 @@ def start_router_process(args, router_port, detokenization_port, model_rpc_ports
                                bmm=args.bmm,
                                no_lora=args.no_lora,
                                fair_weights=args.fair_weights,
+                               nccl_port=args.nccl_port,
                               )
 
     try:
@@ -411,7 +440,7 @@ def start_router_process(args, router_port, detokenization_port, model_rpc_ports
             eos_id=args.eos_id,
             router_port=router_port,
             detokenization_port=detokenization_port,
-            model_rpc_ports=model_rpc_ports,
+            model_rpc_port=model_rpc_port,
             input_params=input_params,
             mode=mode,
             log_stats = not args.disable_log_stats,

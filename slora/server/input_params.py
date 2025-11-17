@@ -49,6 +49,7 @@ class InputParams:
         no_lora,
         # fairness
         fair_weights,
+        nccl_port,
     ) -> None:
         self.max_req_total_len = max_req_total_len
         self.max_total_token_num = max_total_token_num
@@ -77,5 +78,6 @@ class InputParams:
         self.no_lora = no_lora
         
         self.fair_weights = fair_weights
+        self.nccl_port = nccl_port
         return
  

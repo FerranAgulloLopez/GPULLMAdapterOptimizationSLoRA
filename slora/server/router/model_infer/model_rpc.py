@@ -29,6 +29,19 @@ from slora.utils.model_utils import get_model_config
 from .post_process import sample
 
 
+import sys
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+import subprocess as sp
+def get_gpu_memory():
+    command = "nvidia-smi --query-gpu=memory.total,memory.free --format=csv"
+    memory_free_info = sp.check_output(command.split()).decode('ascii')
+    return memory_free_info
+import psutil
+def get_host_memory():
+    return psutil.virtual_memory()
+
+
 class ModelRpcServer(rpyc.Service):
 
     def exposed_init_model(self, rank_id, world_size, weight_dir, adapter_dirs,
@@ -50,7 +63,7 @@ class ModelRpcServer(rpyc.Service):
 
         self.cache = {}
 
-        dist.init_process_group('nccl', init_method=f'tcp://127.0.0.1:{setting["nccl_port"]}', rank=rank_id, world_size=world_size)
+        dist.init_process_group('nccl', init_method=f'tcp://127.0.0.1:{input_params.nccl_port}', rank=rank_id, world_size=world_size)
         torch.cuda.set_device(rank_id)
 
         model_cfg = get_model_config(weight_dir, dummy=input_params.dummy)
@@ -83,7 +96,8 @@ class ModelRpcServer(rpyc.Service):
         # print("adapter_dirs", adapter_dirs)
         self.adapters = []
         self.adapter_id = {}
-        for adapter_dir in tqdm(adapter_dirs, desc="load adapters"):
+        for index, adapter_dir in enumerate(adapter_dirs):
+            eprint(f'Loaded adapters {index + 1} from {len(adapter_dirs)}')
             self.adapter_id[adapter_dir] = len(self.adapters)
             self.adapters.append(LoraTpPartAdapter(rank_id, world_size, adapter_dir, model_cfg,
                                                    swap=input_params.swap, dummy=input_params.dummy,
@@ -103,6 +117,8 @@ class ModelRpcServer(rpyc.Service):
         ''' finish init adapters '''
         
         set_random_seed(2147483647)
+        eprint('Finished initialization of adapters. Host Memory', get_host_memory())
+        eprint('Finished initialization of adapters. GPU Memory', get_gpu_memory())
         return
 
 

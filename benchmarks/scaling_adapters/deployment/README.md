@@ -1,0 +1,3 @@
+- Create base docker image: `docker build -f benchmarks/scaling_adapters/deployment/Dockerfile -t slora .`
+- Create singularity image: `sudo singularity build slora.sif benchmarks/scaling_adapters/deployment/Singularityfile`
+- Schedule different benchmarks e.g., `singularity exec --nv slora.sif python benchmarks/launch_server.py --dummy`

@@ -383,7 +383,7 @@ def main():
 
     assert args.max_req_input_len < args.max_req_total_len
     setting["max_req_total_len"] = args.max_req_total_len
-    setting["nccl_port"] = args.nccl_port
+    # setting["nccl_port"] = args.nccl_port  # TODO it does nothing indeed (move to input parameters class for appropiate usage)
 
     if args.batch_max_tokens is None:
         batch_max_tokens = int(1 / 6 * args.max_total_token_num)
@@ -394,11 +394,10 @@ def main():
             args.batch_max_tokens >= args.max_req_total_len
         ), "batch_max_tokens must >= max_req_total_len"
 
-    can_use_ports = alloc_can_use_network_port(
-        num=3 + args.tp, used_nccl_port=args.nccl_port
-    )
-    router_port, detokenization_port, httpserver_port = can_use_ports[0:3]
-    model_rpc_ports = can_use_ports[3:]
+    router_port = args.port + 2
+    detokenization_port = args.port + 3
+    httpserver_port = args.port + 4
+    model_rpc_port = args.port + 5
 
     global httpserver_manager
     httpserver_manager = HttpServerManager(
@@ -420,7 +419,7 @@ def main():
             args,
             router_port,
             detokenization_port,
-            model_rpc_ports,
+            model_rpc_port,
             args.mode,
             pipe_router_writer,
         ),

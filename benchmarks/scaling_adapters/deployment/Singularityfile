@@ -1,0 +1,5 @@
+Bootstrap: docker-daemon
+From: slora:latest
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
