@@ -1,0 +1,40 @@
+Loaded adapters 1 from 32
+Loaded adapters 2 from 32
+Loaded adapters 3 from 32
+Loaded adapters 4 from 32
+Loaded adapters 5 from 32
+Loaded adapters 6 from 32
+Loaded adapters 7 from 32
+Loaded adapters 8 from 32
+Loaded adapters 9 from 32
+Loaded adapters 10 from 32
+Loaded adapters 11 from 32
+Loaded adapters 12 from 32
+Loaded adapters 13 from 32
+Loaded adapters 14 from 32
+Loaded adapters 15 from 32
+Loaded adapters 16 from 32
+Loaded adapters 17 from 32
+Loaded adapters 18 from 32
+Loaded adapters 19 from 32
+Loaded adapters 20 from 32
+Loaded adapters 21 from 32
+Loaded adapters 22 from 32
+Loaded adapters 23 from 32
+Loaded adapters 24 from 32
+Loaded adapters 25 from 32
+Loaded adapters 26 from 32
+Loaded adapters 27 from 32
+Loaded adapters 28 from 32
+Loaded adapters 29 from 32
+Loaded adapters 30 from 32
+Loaded adapters 31 from 32
+Loaded adapters 32 from 32
+Finished initialization of adapters. Host Memory svmem(total=540609101824, available=480390807552, percent=11.1, used=38067138560, free=466945265664, active=14905991168, inactive=27370975232, buffers=8777728, cached=35587919872, shared=18714079232, slab=2298474496)
+Finished initialization of adapters. GPU Memory memory.total [MiB], memory.free [MiB]
+65247 MiB, 10111 MiB
+
+INFO:     Started server process [3138473]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:48620 (Press CTRL+C to quit)

@@ -1,0 +1,67 @@
+Calculating num_prompts for 1200s duration: 32 loras * 0.0125 rate * 1200s = 480
+Setting num_prompts to 576 (with 1.2x buffer)
+Namespace(backend='slora', base_url=None, host='localhost', port=48620, endpoint='/generate_stream', dataset=None, dataset_name='sharegpt', dataset_path='/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/data/dummy_dataset_mean.json', model='/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b', best_of=1, use_beam_search=False, num_prompts=576, request_rate=inf, request_rate_by_lora=0.0125, seed=0, trust_remote_code=False, disable_tqdm=True, save_result=True, metadata=None, result_dir='benchmarks/scaling_adapters/definitive_results/gpu_capacity/experiments_joan/llama-2-7b/mean_dataset/rank_32/__32_0.0125', launch_server=True, server_args='--port=48620 --nccl_port=48621 --disable_log_stats --model_dir=/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b --tokenizer_mode=auto --max_total_token_num=82528 --swap', lora_dir='/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified', lora_number=32, user_lora_request_relation=None, infinite_behaviour=True, max_server_waiting_time=300, total_time=1200)
+Requests users. Values: ['0' '1' '10' '11' '12' '13' '14' '15' '16' '17' '18' '19' '2' '20' '21'
+ '22' '23' '24' '25' '26' '27' '28' '29' '3' '30' '31' '4' '5' '6' '7' '8'
+ '9']. Counts: [18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+ 18 18 18 18 18 18 18 18]
+Requests loras. Values: ['/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-0'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-1'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-10'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-11'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-12'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-13'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-14'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-15'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-16'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-17'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-18'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-19'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-2'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-20'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-21'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-22'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-23'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-24'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-25'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-26'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-27'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-28'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-29'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-3'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-30'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-31'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-4'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-5'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-6'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-7'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-8'
+ '/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b/lora/yard1_sql-lora-test_dummy_rank_32_simplified-9']. Counts: [18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+ 18 18 18 18 18 18 18 18]
+Server started
+Starting initial single prompt test run...
+Initial test run completed. Starting main benchmark run...
+Traffic request rate: 0.4
+Using specified total_time: 1200s
+===== Serving Benchmark Intermediate Result ======
+Successful requests:                     575       
+Benchmark duration (s):                  1454.04   
+Total input tokens:                      143750    
+Total generated tokens:                  132250    
+Request throughput (req/s):              0.40      
+Input token throughput (tok/s):          98.86     
+Output token throughput (tok/s):         90.95     
+---------------Time to First Token----------------
+Mean TTFT (ms):                          2583.87   
+Median TTFT (ms):                        55.21     
+P99 TTFT (ms):                           202.25    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          15.50     
+Median TPOT (ms):                        15.55     
+P99 TPOT (ms):                           16.77     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           15.43     
+Median ITL (ms):                         15.35     
+P99 ITL (ms):                            16.58     
+==================================================
+Server terminated

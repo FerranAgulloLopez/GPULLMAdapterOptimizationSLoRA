@@ -1,0 +1,72 @@
+Loaded adapters 1 from 64
+Loaded adapters 2 from 64
+Loaded adapters 3 from 64
+Loaded adapters 4 from 64
+Loaded adapters 5 from 64
+Loaded adapters 6 from 64
+Loaded adapters 7 from 64
+Loaded adapters 8 from 64
+Loaded adapters 9 from 64
+Loaded adapters 10 from 64
+Loaded adapters 11 from 64
+Loaded adapters 12 from 64
+Loaded adapters 13 from 64
+Loaded adapters 14 from 64
+Loaded adapters 15 from 64
+Loaded adapters 16 from 64
+Loaded adapters 17 from 64
+Loaded adapters 18 from 64
+Loaded adapters 19 from 64
+Loaded adapters 20 from 64
+Loaded adapters 21 from 64
+Loaded adapters 22 from 64
+Loaded adapters 23 from 64
+Loaded adapters 24 from 64
+Loaded adapters 25 from 64
+Loaded adapters 26 from 64
+Loaded adapters 27 from 64
+Loaded adapters 28 from 64
+Loaded adapters 29 from 64
+Loaded adapters 30 from 64
+Loaded adapters 31 from 64
+Loaded adapters 32 from 64
+Loaded adapters 33 from 64
+Loaded adapters 34 from 64
+Loaded adapters 35 from 64
+Loaded adapters 36 from 64
+Loaded adapters 37 from 64
+Loaded adapters 38 from 64
+Loaded adapters 39 from 64
+Loaded adapters 40 from 64
+Loaded adapters 41 from 64
+Loaded adapters 42 from 64
+Loaded adapters 43 from 64
+Loaded adapters 44 from 64
+Loaded adapters 45 from 64
+Loaded adapters 46 from 64
+Loaded adapters 47 from 64
+Loaded adapters 48 from 64
+Loaded adapters 49 from 64
+Loaded adapters 50 from 64
+Loaded adapters 51 from 64
+Loaded adapters 52 from 64
+Loaded adapters 53 from 64
+Loaded adapters 54 from 64
+Loaded adapters 55 from 64
+Loaded adapters 56 from 64
+Loaded adapters 57 from 64
+Loaded adapters 58 from 64
+Loaded adapters 59 from 64
+Loaded adapters 60 from 64
+Loaded adapters 61 from 64
+Loaded adapters 62 from 64
+Loaded adapters 63 from 64
+Loaded adapters 64 from 64
+Finished initialization of adapters. Host Memory svmem(total=540609101824, available=461795491840, percent=14.6, used=39001329664, free=449428054016, active=15006973952, inactive=44458487808, buffers=12939264, cached=52166778880, shared=35120377856, slab=2984472576)
+Finished initialization of adapters. GPU Memory memory.total [MiB], memory.free [MiB]
+65247 MiB, 10103 MiB
+
+INFO:     Started server process [3527612]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:39594 (Press CTRL+C to quit)

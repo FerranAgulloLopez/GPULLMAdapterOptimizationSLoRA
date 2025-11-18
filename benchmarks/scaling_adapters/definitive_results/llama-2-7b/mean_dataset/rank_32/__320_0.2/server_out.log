@@ -1,0 +1,11 @@
+For some LLaMA-based models, initializing the fast tokenizer may take a long time. To eliminate the initialization time, consider using 'hf-internal-testing/llama-tokenizer' instead of the original tokenizer.
+llama-2-7b: 12.06 GB
+peak working mem for (bs=20, seqlen=512): 0.70 GB
+peak working mem for (bs=100, seqlen=512): 3.52 GB
+all adapters (320) estimated size: 20.00 GB
+avg adapter estimated size: 64.00 MB
+INFO:     127.0.0.1:58146 - "GET /health/ HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:58146 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58152 - "POST /generate_stream HTTP/1.1" 200 OK
+load 1 adapters, 1 in total
+current batch size: 1 token used ratio: 0.00304139201240791

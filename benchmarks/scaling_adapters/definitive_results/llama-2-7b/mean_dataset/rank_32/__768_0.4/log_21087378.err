@@ -1,0 +1,7 @@
+load SINGULARITY/3.11.5 (PATH)
+Traceback (most recent call last):
+  File "/home/bsc/bsc098408/MN4/bsc98408/S-LoRA/benchmarks/scaling_adapters/benchmark_serving.py", line 858, in <module>
+    main(args)
+  File "/home/bsc/bsc098408/MN4/bsc98408/S-LoRA/benchmarks/scaling_adapters/benchmark_serving.py", line 624, in main
+    raise Exception("Server did not start on time")
+Exception: Server did not start on time
