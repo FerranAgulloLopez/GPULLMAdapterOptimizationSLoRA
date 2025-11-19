@@ -389,11 +389,26 @@ def plot_gpu_capacity(
 
 def main():
     parser = argparse.ArgumentParser(description='Plot GPU capacity for medium requests')
-    parser.add_argument('--data-path', type=str, required=True, 
-                       help='Path to the mean_dataset directory containing rank subdirectories')
-    parser.add_argument('--output-path', type=str, required=True,
-                       help='Path to save the output plot')
-    parser.add_argument('--rank', type=int, help='If specified, only plot data for this rank')
+    parser.add_argument(
+        '--data-path',
+        type=str,
+        required=False,
+        help='Path to the mean_dataset directory containing rank subdirectories',
+        default='llama-2-7b/mean_dataset',
+    )
+    parser.add_argument(
+        '--output-path',
+        type=str,
+        required=False,
+        help='Path to save the output plot',
+        default='.',
+    )
+    parser.add_argument(
+        '--rank',
+        type=int,
+        help='If specified, only plot data for this rank',
+        default=32,
+    )
     args = parser.parse_args()
 
     if args.rank is not None:
