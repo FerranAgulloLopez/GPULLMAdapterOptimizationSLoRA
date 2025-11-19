@@ -2,6 +2,7 @@ deployment/
 figures/
 test/
 LICENSE
-README.md
+README_slora.md
 .gitignore
 .git/
+benchmarks/scaling_adapters/definitive_results/
