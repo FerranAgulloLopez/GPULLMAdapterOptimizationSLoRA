@@ -1,0 +1,1 @@
+{"date": "20250513-235645", "backend": "slora", "model_id": "/gpfs/scratch/bsc98/bsc098069/llm_benchmarking/models/llama/llama-2-7b", "best_of": 1, "use_beam_search": false, "num_prompts": 9216, "request_rate": Infinity, "infinite_behaviour": ""}
